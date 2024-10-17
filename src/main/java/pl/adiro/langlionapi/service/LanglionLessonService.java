@@ -20,10 +20,9 @@ public class LanglionLessonService implements LessonService{
     private final Wait<WebDriver> wait;
 
     @Autowired
-    public LanglionLessonService(WebDriver driver,CredentialsService credentialsService){
-        this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-        logIn(credentialsService);
+    public LanglionLessonService(WebDriverService driverService){
+        driver = driverService.getDriver();
+        wait = driverService.getWait();
     }
 
     @Override
@@ -45,22 +44,5 @@ public class LanglionLessonService implements LessonService{
     @Override
     public void delete(Lesson lesson) {
 
-    }
-
-    private void logIn(CredentialsService credentialsService){
-        driver.get("https://champions.langlion.com/");
-
-        WebElement loginField = driver.findElement(By.id("login"));
-        WebElement passwordField = driver.findElement(By.id("password"));
-        WebElement submitButt = driver.findElement(By.xpath(
-                "//form[@id='form_login']//a[contains(@class,'btn-primary')]")
-        );
-
-        loginField.sendKeys(credentialsService.getLogin());
-        passwordField.sendKeys(credentialsService.getPassword());
-        submitButt.click();
-
-        var calendarElementIdentifier = By.id("menu-calendar");
-        wait.until(ExpectedConditions.elementToBeClickable(calendarElementIdentifier));
     }
 }

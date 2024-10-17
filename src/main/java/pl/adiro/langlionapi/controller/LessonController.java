@@ -3,6 +3,7 @@ package pl.adiro.langlionapi.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import pl.adiro.langlionapi.model.lessons.Lesson;
 import pl.adiro.langlionapi.model.lessons.Student;
 import pl.adiro.langlionapi.service.LessonService;
 
@@ -18,8 +19,8 @@ public class LessonController {
         this.lessonService = lessonService;
     }
 
-    @GetMapping("/students")
-    public Iterable<Student> getStudents(){
+    @GetMapping("/v1/lessons")
+    public Iterable<Lesson> getLessons(){
         return null;
     }
 }

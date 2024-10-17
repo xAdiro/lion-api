@@ -6,4 +6,7 @@ import java.util.Optional;
 
 public interface StudentService {
     Iterable<Student> findAll();
+    Iterable<Student> findByName(String name);
+    Iterable<Student> findByFullName(String name, String surname);
+
 }

@@ -2,14 +2,15 @@ package pl.adiro.langlionapi.model.lessons;
 
 import lombok.Data;
 
+import java.util.HashMap;
+import java.util.Map;
+
 
 @Data
 public class Student {
-    private String fullName;
-
+    private String name;
+    private String surname;
     private String subject;
-
-    private String grade;
-
+    private int grade;
     private String level;
 }
