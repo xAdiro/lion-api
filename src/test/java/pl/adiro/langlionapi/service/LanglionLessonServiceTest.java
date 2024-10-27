@@ -10,13 +10,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class LanglionLessonServiceTest {
 
     @Autowired
-    WebDriver driver;
-
-    @Autowired
-    CredentialsService credentialsService;
+    WebDriverService webDriverService;
 
     @Test
     void isLoginSuccessful(){
-        new LanglionLessonService(driver, credentialsService);
+        new LanglionLessonService(webDriverService);
     }
 }

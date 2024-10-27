@@ -17,9 +17,10 @@ public class LanglionWebDriverService implements WebDriverService {
     private Wait<WebDriver> wait;
 
     @Autowired
-    public void LanglionStudentService(WebDriver driver){
+    public void LanglionStudentService(WebDriver driver, CredentialsService credentialsService) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        logIn(credentialsService);
     }
 
     @Override

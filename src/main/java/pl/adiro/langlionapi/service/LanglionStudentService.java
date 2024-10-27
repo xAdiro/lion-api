@@ -39,11 +39,12 @@ public class LanglionStudentService implements StudentService {
         List<Student> students = new LinkedList<>();
         for (var studentOption : studentFormOptions) {
             String studentText = studentOption.getAttribute("textContent");
-            students.add(new Student(studentText));
+            if (studentText.isBlank()) continue;
+            Student newStudent = studentFromText(studentText);
+            newStudent.setId(Integer.parseInt(studentOption.getAttribute("value")));
+            students.add(newStudent);
         }
-
-
-        return null;
+        return students;
     }
 
     @Override
@@ -59,7 +60,7 @@ public class LanglionStudentService implements StudentService {
     private Student studentFromText(String text) {
 
         text = text.trim().replace("Ind - ", "");
-        text = text.replace("\\[[a-zA-Z]+\\]", "").trim();
+        text = text.replace("\\[[a-zA-Z ]+\\]", "").trim();
         String[] textValues = text.split(" ");
 
         String name = textValues[0];
@@ -67,5 +68,11 @@ public class LanglionStudentService implements StudentService {
         String educationSubjectText = textValues[2]
                 .replace("(", "")
                 .replace(")", "");
-        subject = gradeSubjectText[1];}
+
+        return Student.builder()
+                .name(name)
+                .surname(surname)
+                .subject(educationSubjectText)
+                .build();
+    }
 }
