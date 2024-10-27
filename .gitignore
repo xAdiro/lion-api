@@ -52,3 +52,5 @@ hs_err_pid*
 
 # Dolphin
 .directory
+# environmental variables
+*.env
